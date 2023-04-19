@@ -1,0 +1,167 @@
+\documentclass{experiment}
+
+%%%%%%%% DOCUMENT %%%%%%%%
+\begin{document}
+	\begin{titlepage}
+		\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 							% horizontal line and its thickness
+		\centering 
+		% 在figures文件中放入校徽文件
+		\includegraphics[width=0.4\linewidth]{logo-sues-mark.jpg}
+		
+		\quad\\[0.5cm]
+		
+		% 学院信息
+		\textbf{\huge 电子电气工程学院}\\[1cm]
+		
+		% 文件信息
+		\textsc{\Large 计算机基础实验报告}\\[0.2cm]
+		
+		\HRule \\[0.8cm]
+		
+		% 大标题
+		{\Huge\bfseries 实验一：计算机基础实验报告}\\[0.7cm]
+		\HRule \\[2cm]
+		\Large
+		% 作者信息
+		\kaishu{姓名: XXX}\\
+		% 学号信息 可继续往下拓展
+		学号: XXXXXXXXXX\\[5.5cm]
+		\songti													
+		{\Large \today}\\[3cm]
+	
+
+		\vfill 
+	\end{titlepage}
+	\setmainfont{Times New Roman}
+	% 设置页眉页脚
+	\pagestyle{fancy}
+	\fancyfoot{}
+	\fancyhead[C]{\kaishu 实验一：编码器的设计及应用实验} 
+	\section{实验目的}
+	
+\begin{enumerate}
+\item 熟悉常用编码器，译码器的功能逻辑。
+\item 学习组合逻辑电路译码器或编码器的设计方法及应用。
+\item 熟悉Verilog代码的编写方法。
+\end{enumerate}
+	
+
+	\section{实验内容}
+	
+	设计一个8线-3线独热码编码器，在该编码器中，输入端有8个信号线，输出端有3个信号线。
+	输入数据为8位二进制数，其中只有一位为1，其余位均为0，则输出数据为对应位的二进制表示。
+	
+
+	\begin{table}[htbp]
+		\centering
+		\caption{真值表}
+		\begin{tabular}{cccccccc|ccc}
+			\toprule
+			\multicolumn{8}{c|}{输入in[7:0]} & \multicolumn{3}{c}{输出out[2:0]} \\
+			\cmidrule{1-8}\cmidrule{9-11} in[7] & in[6] & in[5] & in[4] & in[3] & in[2] & in[1] & in[0] & out[2] & out[1] & out[0] \\
+			\midrule
+			1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \\
+			0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 \\
+			0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 \\
+			0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+			0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 \\
+			0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 \\
+			0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\
+			0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+			\bottomrule
+		\end{tabular}%
+		\label{tab:addlabel}%
+	\end{table}%
+
+	8-3编码器的verilog代码实现如下：
+\begin{lstlisting}[language=verilog]
+	module encoder_8_3(
+		input [7:0] din,
+		output reg [2:0] dout
+	);
+	
+	always @(*)
+	begin
+		case(din)
+			8'b00000001: dout = 3'b000;
+			8'b00000010: dout = 3'b001;
+			8'b00000100: dout = 3'b010;
+			8'b00001000: dout = 3'b011;
+			8'b00010000: dout = 3'b100;
+			8'b00100000: dout = 3'b101;
+			8'b01000000: dout = 3'b110;
+			8'b10000000: dout = 3'b111;
+		default: dout = 3'b000;
+		endcase
+	end
+	
+	endmodule
+\end{lstlisting}
+
+8-3编码器的仿真文件的verilog代码实现如下：
+\begin{lstlisting}[language=verilog]
+	module encoder_8_3_tb;
+	
+	reg [7:0] din;
+	wire [2:0] dout;
+	
+	encoder_8_3 encoder(
+		.din(din),
+		.dout(dout)
+	);
+	
+	initial begin
+		din = 8'b00000001;
+		#10;
+		if (dout !== 3'b000) $error("Test 1 failed!");
+		
+		din = 8'b00000010;
+		#10;
+		if (dout !== 3'b001) $error("Test 2 failed!");
+		
+		din = 8'b00000100;
+		#10;
+		if (dout !== 3'b010) $error("Test 3 failed!");
+		
+		din = 8'b00001000;
+		#10;
+		if (dout !== 3'b011) $error("Test 4 failed!");
+		
+		din = 8'b00010000;
+		#10;
+		if (dout !== 3'b100) $error("Test 5 failed!");
+		
+		din = 8'b00100000;
+		#10;
+		if (dout !== 3'b101) $error("Test 6 failed!");
+		
+		din = 8'b01000000;
+		#10;
+		if (dout !== 3'b110) $error("Test 7 failed!");
+		
+		din = 8'b10000000;
+		#10;
+		if (dout !== 3'b111) $error("Test 8 failed!");
+		
+		$display("All tests passed.");
+		$finish;
+	end
+	
+	endmodule
+\end{lstlisting}
+
+\section{操作步骤}
+
+\begin{enumerate}
+\item 根据Vivado的设计流程，建立本次实验项目的工程文件；
+\item 建立本次实验内容的Verilog功能模块，修改语法错误；
+\item 建立仿真文件，进行电路的功能仿真；
+\item 编译综合，直到没有错误，查看综合结果（原理图及资源利用报告）；
+\item 建立约束文件xdc，生成bit文件；
+\item 正确连接实验箱，下载bit文件，记录实验现象及结果。
+\end{enumerate}
+
+\section{实验结果}
+
+
+\end{document}
