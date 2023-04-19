@@ -1,0 +1,159 @@
+\documentclass[a4paper,12pt]{paper}
+
+
+%---------------------------------------------------------------------
+%	页眉页脚设置
+%---------------------------------------------------------------------
+\fancypagestyle{plain}{
+    \pagestyle{fancy}      %改变章节首页页眉
+}
+
+\pagestyle{fancy}
+\lhead{\kaishu~课程报告~}
+\rhead{\kaishu~xxx}
+\cfoot{\thepage}
+\titleformat{\chapter}{\centering\zihao{2}\heiti}{第\chinese{chapter}章}{1em}{}
+\begin{document}
+%---------------------------------------------------------------------
+%	封面设置
+%---------------------------------------------------------------------
+\begin{titlepage}
+    \begin{center}
+        
+    %\includegraphics[width=0.60\textwidth]{logo-sues.jpg}\\
+    \vspace{10mm}
+    \textbf{\zihao{1}{\heiti{上海工程技术大学XX学院}}}\\[0.8cm]
+    \textbf{\zihao{1}{\heiti{《XX学》课程报告}}}\\[3cm]
+    \includegraphics[width=0.3\textwidth]{logo-sues-mark.jpg}\\%这里是你的照片
+    \vspace{\fill}
+    
+\setlength{\extrarowheight}{3mm}
+{\songti\zihao{3}	
+\begin{tabular}{rl}
+    
+    {\makebox[4\ccwd][s]{学\qquad 号：}} & ~\kaishu\underline{XXXX} \\
+    {\makebox[4\ccwd][s]{姓\qquad 名：}} & ~\kaishu\underline{XXXX} \\
+    {\makebox[4\ccwd][s]{年\qquad 级：}} & ~\kaishu\underline{XXXX}\\
+    {\makebox[4\ccwd][s]{专\qquad 业：}} & ~\kaishu\underline{XXXX}\\
+    {\makebox[4\ccwd][s]{授课教师：}}  & ~\kaishu\underline{XXXX~教授}\\ 
+    {\makebox[4\ccwd][s]{课程助教：}} & ~\kaishu\underline{XXXX~XXXX}\\
+    {\makebox[4\ccwd][s]{完成日期：}}  & ~\kaishu\underline{\today}\\ 
+
+\end{tabular}
+ }\\[2cm]
+%\vspace{\fill}
+%\zihao{4}
+%使用\LaTeX 撰写于\today
+    \end{center}	
+\end{titlepage}
+%---------------------------------------------------------------------
+%  摘要页
+%---------------------------------------------------------------------
+\begin{abstract}
+    这里是摘要。
+    \vspace*{15em}
+
+    \textbf{关键词：}总结，理解，思考
+\end{abstract}
+
+\newpage
+
+\begin{center}
+    \textbf{Abstract}
+\end{center}
+
+This is abstract.
+\vspace*{15em}
+
+\textbf{Keywords } summary, comprehension, thinking
+
+
+%---------------------------------------------------------------------
+%  目录页
+%---------------------------------------------------------------------
+\newpage
+\tableofcontents % 生成目录
+\newpage
+
+%---------------------------------------------------------------------
+%  绪论
+%---------------------------------------------------------------------
+\chapter{课程理解}
+\setcounter{page}{1}
+
+\section{实验目的}
+
+\begin{itemize}
+    \item 熟悉、剖析、设计、实现直升机实验系统，获得对智能系统的基本结构及其各个组成单元的基本认识。
+    \item 掌握状态反馈、观测器设计等现代控制理论。
+    \item 学会运用MATLAB/Simulink 来搭建系统仿真，并在Simulink环境下实现实时控制。
+    \item 学会将仿真结果与实验相结合，了解仿真和实际系统的区别与联系。
+    \item 运用Word或\LaTeX 完成基本的科技报告撰写。
+\end{itemize}
+
+%---------------------------------------------------------------------
+%  极点配置
+%---------------------------------------------------------------------
+\chapter{知识点总结} 
+
+\section{空间描述与变换}
+
+\begin{definition}[位姿]
+    位姿是两坐标系间的相互关系，可以等价地用一个位置矢量和一个旋转矩阵来描述：$\left\{ B \right\} = \left\{ {{}_B^AR,{}^A{P_{BORG}}} \right\}$
+\end{definition}
+
+\begin{equation}
+    F=ma
+\end{equation}
+
+%---------------------------------------------------------------------
+%  分离原则
+%---------------------------------------------------------------------
+\chapter{总结与展望}
+
+\section{深度学习方法在机械臂控制中的应用}
+
+\cite{wilson2019learning}采用了sim-to-real learning的架构。
+
+%---------------------------------------------------------------------
+%  实验总结
+%---------------------------------------------------------------------
+%\titleformat{\chapter}{\centering\zihao{-1}\heiti}{}{1em}{}
+
+%---------------------------------------------------------------------
+%  参考文献设置
+%---------------------------------------------------------------------
+%\addcontentsline{toc}{chapter}{参考文献}
+
+%\printbibliography
+
+\titleformat{\chapter}{\centering\zihao{2}\heiti}{附录~\Alph{chapter}}{1em}{}
+
+\begin{appendix}
+
+\chapter{第一部分}
+
+\begin{lstlisting}[language=python]
+print('hello world') 
+\end{lstlisting}
+
+\chapter{第二部分}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+    \centering
+    \caption{测试结果}
+    \label{tab:my-table}
+    \begin{tabular}{@{}cc@{}}
+    \toprule
+    算法 & 准确率 \\ \midrule
+    I & 0.7684 \\
+    II & 0.7865 \\
+    III & 0.7655 \\ \bottomrule
+    \end{tabular}
+\end{table}
+
+\end{appendix}
+
+\end{document}
