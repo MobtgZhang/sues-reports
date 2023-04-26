@@ -31,6 +31,11 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{fancyhdr}
 \RequirePackage{booktabs}
 \RequirePackage{listings}
+\RequirePackage{cite}
+% 设置首行缩进
+\RequirePackage{indentfirst}
+% 设置目录当中的格式
+%-----------------------------------------
 
 % 设置插入的表格
 \RequirePackage{tabularx,array}
@@ -118,6 +123,13 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %\RequirePackage{subfigure}  %插入多图时用子图显示的宏包
 \RequirePackage[colorinlistoftodos]{todonotes}
 \RequirePackage[colorlinks=true, allcolors=blue]{hyperref}
+% 设置引用格式
+\RequirePackage{url}
+\hypersetup{
+    hidelinks,
+    citecolor=black
+}
+\renewcommand\refname{参考文献}
 \RequirePackage{caption}
 %\RequirePackage{subcaption}
 %\RequirePackage{subfigure}
