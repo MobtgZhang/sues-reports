@@ -32,6 +32,82 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{booktabs}
 \RequirePackage{listings}
 
+% 设置插入的表格
+\RequirePackage{tabularx,array}
+%% -------------------------------*************----------
+
+%定义上述标签的默认值
+\def\experiment@value@teacherName{教师名字}
+\def\experiment@value@classNumber{M123456789}
+\def\experiment@value@studentName{张~三}
+\def\experiment@value@professional{专~业}
+\def\experiment@value@experimentReport{实验XXX：计算机基础实验报告}
+
+
+%定义用户填写上述标签对应值的命令,需要用户在主文档自行调用
+\newcommand\teacherName[1]{\def\experiment@value@teacherName{#1}}
+\newcommand\classNumber[1]{\def\experiment@value@classNumber{#1}}
+\newcommand\studentName[1]{\def\experiment@value@studentName{#1}}
+\newcommand\professional[1]{\def\experiment@value@professional{#1}}
+\newcommand\experimentReport[1]{\def\experiment@value@experimentReport{#1}}
+
+%% 自定义论文的封面
+\newcommand{\makecover}{
+	\thispagestyle{empty}
+  	\begin{center}
+		\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}% horizontal line and its thickness
+		% 在figures文件中放入校徽文件
+		\includegraphics[width=0.4\linewidth]{logo-sues-mark.jpg}
+		\quad\\[0.5cm]
+		
+		% 学院信息
+		\textbf{\huge 电子电气工程学院}\\[1cm]
+		
+		% 文件信息
+		\textsc{\Large 计算机基础实验报告}\\[0.2cm]
+		
+		\HRule \\[0.8cm]
+		
+		% 大标题
+		{\Huge\bfseries\experiment@value@experimentReport}\\[0.7cm]
+		\HRule \\[2cm]
+
+		\hspace*{3em}
+		
+		
+		\begin{table}[hbp]
+			\Large
+			\centering
+			\begin{tabular}{p{4cm}<{\centering}p{6cm}<{\centering}}
+				\kaishu{姓\quad\quad 名 } & \experiment@value@studentName\\
+				\cmidrule{2-2}
+				\kaishu{学\quad\quad 号 } & \experiment@value@classNumber\\
+				\cmidrule{2-2}
+				\kaishu{专\quad\quad 业 } & \experiment@value@professional\\
+				\cmidrule{2-2}      
+				\kaishu{指导教师} & \experiment@value@teacherName\\
+				\cmidrule{2-2}   
+			\end{tabular}
+		\end{table}
+
+
+		\hspace*{5em}
+
+		\songti													
+		{\Large \today}\\[2cm]
+
+		\vfill 
+  	\end{center}
+  	\newpage
+}
+
+
+\setmainfont{Times New Roman}
+% 设置页眉页脚
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyhead[C]{\kaishu 实验一：编码器的设计及应用实验}
+
 %% 设置页面页边距
 \RequirePackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
 

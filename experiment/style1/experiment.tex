@@ -1,51 +1,19 @@
 \documentclass{experiment}
 
 %%%%%%%% DOCUMENT %%%%%%%%
+\teacherName{这是教师名字}
+\classNumber{M56748989}
+\studentName{学生名字}
+\professional{专业名字}
+\experimentReport{实验一：计算机基础实验报告}
 \begin{document}
-	\begin{titlepage}
-		\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 							% horizontal line and its thickness
-		\centering 
-		% 在figures文件中放入校徽文件
-		\includegraphics[width=0.4\linewidth]{logo-sues-mark.jpg}
-		
-		\quad\\[0.5cm]
-		
-		% 学院信息
-		\textbf{\huge 电子电气工程学院}\\[1cm]
-		
-		% 文件信息
-		\textsc{\Large 计算机基础实验报告}\\[0.2cm]
-		
-		\HRule \\[0.8cm]
-		
-		% 大标题
-		{\Huge\bfseries 实验一：计算机基础实验报告}\\[0.7cm]
-		\HRule \\[2cm]
-		\Large
-		% 作者信息
-		\kaishu{姓名: XXX}\\
-		% 学号信息 可继续往下拓展
-		学号: XXXXXXXXXX\\[5.5cm]
-		\songti													
-		{\Large \today}\\[3cm]
-	
-
-		\vfill 
-	\end{titlepage}
-	\setmainfont{Times New Roman}
-	% 设置页眉页脚
-	\pagestyle{fancy}
-	\fancyfoot{}
-	\fancyhead[C]{\kaishu 实验一：编码器的设计及应用实验} 
+	\makecover
 	\section{实验目的}
-	
-\begin{enumerate}
-\item 熟悉常用编码器，译码器的功能逻辑。
-\item 学习组合逻辑电路译码器或编码器的设计方法及应用。
-\item 熟悉Verilog代码的编写方法。
-\end{enumerate}
-	
-
+		\begin{enumerate}
+		\item 熟悉常用编码器，译码器的功能逻辑。
+		\item 学习组合逻辑电路译码器或编码器的设计方法及应用。
+		\item 熟悉Verilog代码的编写方法。
+		\end{enumerate}
 	\section{实验内容}
 	
 	设计一个8线-3线独热码编码器，在该编码器中，输入端有8个信号线，输出端有3个信号线。
